@@ -5,7 +5,7 @@ var AppInfo = require("ti.appinfo");
 
 - [x] AppInfo.getVersionsCode();
 - [x] AppInfo.getBackupAgentName();
-_Class implementing the Application's backup functionality._
+_Class implementing the Applications backup functionality._
 
 - [x] AppInfo.getFirstInstallTime();
 - [x] AppInfo.getFirstInstallDate();
