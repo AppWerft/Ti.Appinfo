@@ -85,6 +85,7 @@ Local<FunctionTemplate> AppinfoModule::getProxyTemplate(Isolate* isolate)
 
 	// Method bindings --------------------------------------------------------
 	titanium::SetProtoMethod(isolate, t, "getVersionsCode", AppinfoModule::getVersionsCode);
+	titanium::SetProtoMethod(isolate, t, "get", AppinfoModule::get);
 
 	Local<ObjectTemplate> prototypeTemplate = t->PrototypeTemplate();
 	Local<ObjectTemplate> instanceTemplate = t->InstanceTemplate();
@@ -119,6 +120,68 @@ void AppinfoModule::getVersionsCode(const FunctionCallbackInfo<Value>& args)
 		methodID = env->GetMethodID(AppinfoModule::javaClass, "getVersionsCode", "()Lorg/appcelerator/kroll/KrollDict;");
 		if (!methodID) {
 			const char *error = "Couldn't find proxy method 'getVersionsCode' with signature '()Lorg/appcelerator/kroll/KrollDict;'";
+			LOGE(TAG, error);
+				titanium::JSException::Error(isolate, error);
+				return;
+		}
+	}
+
+	Local<Object> holder = args.Holder();
+	// If holder isn't the JavaObject wrapper we expect, look up the prototype chain
+	if (!JavaObject::isJavaObject(holder)) {
+		holder = holder->FindInstanceInPrototypeChain(getProxyTemplate(isolate));
+	}
+
+	titanium::Proxy* proxy = titanium::Proxy::unwrap(holder);
+
+	jvalue* jArguments = 0;
+
+	jobject javaProxy = proxy->getJavaObject();
+	jobject jResult = (jobject)env->CallObjectMethodA(javaProxy, methodID, jArguments);
+
+
+
+	if (!JavaObject::useGlobalRefs) {
+		env->DeleteLocalRef(javaProxy);
+	}
+
+
+
+	if (env->ExceptionCheck()) {
+		Local<Value> jsException = titanium::JSException::fromJavaException(isolate);
+		env->ExceptionClear();
+		return;
+	}
+
+	if (jResult == NULL) {
+		args.GetReturnValue().Set(Null(isolate));
+		return;
+	}
+
+	Local<Value> v8Result = titanium::TypeConverter::javaObjectToJsValue(isolate, env, jResult);
+
+	env->DeleteLocalRef(jResult);
+
+
+	args.GetReturnValue().Set(v8Result);
+
+}
+void AppinfoModule::get(const FunctionCallbackInfo<Value>& args)
+{
+	LOGD(TAG, "get()");
+	Isolate* isolate = args.GetIsolate();
+	HandleScope scope(isolate);
+
+	JNIEnv *env = titanium::JNIScope::getEnv();
+	if (!env) {
+		titanium::JSException::GetJNIEnvironmentError(isolate);
+		return;
+	}
+	static jmethodID methodID = NULL;
+	if (!methodID) {
+		methodID = env->GetMethodID(AppinfoModule::javaClass, "get", "()Lorg/appcelerator/kroll/KrollDict;");
+		if (!methodID) {
+			const char *error = "Couldn't find proxy method 'get' with signature '()Lorg/appcelerator/kroll/KrollDict;'";
 			LOGE(TAG, error);
 				titanium::JSException::Error(isolate, error);
 				return;

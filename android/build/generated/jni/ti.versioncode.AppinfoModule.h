@@ -30,6 +30,7 @@ private:
 
 	// Methods -----------------------------------------------------------
 	static void getVersionsCode(const v8::FunctionCallbackInfo<v8::Value>&);
+	static void get(const v8::FunctionCallbackInfo<v8::Value>&);
 
 	// Dynamic property accessors ----------------------------------------
 

@@ -27,7 +27,7 @@ public class AppinfoModule extends KrollModule {
 	}
 
 	@Kroll.method
-	public static KrollDict getVersionsCode() {
+	public static KrollDict get() {
 		KrollDict kd = new KrollDict();
 		int versionCode = 0;
 		long firstInstallTime = 0;
