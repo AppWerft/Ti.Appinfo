@@ -8,6 +8,11 @@
  */
 package ti.versioncode;
 
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
+
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
@@ -20,20 +25,18 @@ import android.content.pm.PackageManager.NameNotFoundException;
 
 @Kroll.module(name = "Versioncode", id = "ti.versioncode")
 public class AppinfoModule extends KrollModule {
+	private static KrollDict appinfo = new KrollDict();
+	private static SimpleDateFormat sdf = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss,SSS", Locale.US);
+
 	public AppinfoModule() {
 		super();
+
 	}
 
 	@Kroll.onAppCreate
 	public static void onAppCreate(TiApplication app) {
-	}
 
-	@Kroll.method
-	public static KrollDict get() {
-		KrollDict kd = new KrollDict();
-		int versionCode = 0;
-		long firstInstallTime = 0;
-		String versionName = null;
 		Context ctx = TiApplication.getInstance().getApplicationContext();
 		try {
 			PackageInfo pInfo = ctx.getPackageManager().getPackageInfo(
@@ -46,20 +49,59 @@ public class AppinfoModule extends KrollModule {
 			ai.put("name", appInfo.name);
 			ai.put("nativeLibraryDir", appInfo.nativeLibraryDir);
 			ai.put("sharedLibraryFiles", appInfo.sharedLibraryFiles);
-			kd.put("appInfo", ai);
-			kd.put("sharedUserId", pInfo.sharedUserId);
-			kd.put("versionsCode", pInfo.versionCode);
-			kd.put("firstInstallTime", pInfo.firstInstallTime);
-			kd.put("lastUpdateTime", pInfo.lastUpdateTime);
-			kd.put("versionName", pInfo.versionName);
-			kd.put("requestedPermissions", pInfo.requestedPermissions);
+			appinfo.put("appInfo", ai);
+			appinfo.put("sharedUserId", pInfo.sharedUserId);
+			appinfo.put("versionsCode", pInfo.versionCode);
+			appinfo.put("firstInstallTime", pInfo.firstInstallTime);
+			appinfo.put("firstInstallDate", time2date(pInfo.firstInstallTime));
 
-			return kd;
-
+			appinfo.put("lastUpdateTime", pInfo.lastUpdateTime);
+			appinfo.put("versionName", pInfo.versionName);
+			appinfo.put("requestedPermissions", pInfo.requestedPermissions);
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
-		return null;
+	}
 
+	@Kroll.method
+	public static KrollDict getAll() {
+		return appinfo;
+	}
+
+	@Kroll.method
+	public static String getBackupAgentName() {
+		return appinfo.getKrollDict("appinfo").getString("backupAgentName");
+	}
+
+	@Kroll.method
+	public static String getDataDir() {
+		return appinfo.getKrollDict("appinfo").getString("dataDir");
+	}
+
+	@Kroll.method
+	public static String getNativeLibraryDir() {
+		return appinfo.getKrollDict("appinfo").getString("nativeLibraryDir");
+	}
+
+	@Kroll.method
+	public static String getSharedLibraryFiles() {
+		return appinfo.getKrollDict("appinfo").getString("sharedLibraryFiles");
+	}
+
+	@Kroll.method
+	public static String getName() {
+		return appinfo.getKrollDict("appinfo").getString("name");
+	}
+
+	@Kroll.method
+	public static int getVersionsCode() {
+		return appinfo.getInt("versionsCode");
+	}
+
+	private static String time2date(long time) {
+		GregorianCalendar calendar = new GregorianCalendar(
+				TimeZone.getTimeZone("US/Central"));
+		calendar.setTimeInMillis(time);
+		return sdf.format(calendar.getTime());
 	}
 }

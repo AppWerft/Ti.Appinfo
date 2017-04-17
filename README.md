@@ -1,10 +1,24 @@
 # Ti.AppInfo
 
 ```javascript
-require("ti.appinfo").get();
+var AppInfo = require("ti.appinfo");
 
-// versionsCode
-// firstInstallTime
-// versionName"
-// lastUpdateTime
-// requestedPermissions
+- [x] AppInfo.getVersionsCode();
+- [x] AppInfo.getBackupAgentName();
+- [x] AppInfo.getFirstInstallTime();
+- [x] AppInfo.getFirstInstallDate();
+- [x] AppInfo.getLastInstallTime();
+- [x] AppInfo.getLastInstallDate();
+- [x] AppInfo.getLastInstallDate();
+- [x] AppInfo.getDataDir();
+- [x] AppInfo.getNativeLibraryDir();
+- [x] AppInfo.getSharedLibraryFiles();
+- [x] AppInfo.getName();
+- [x] AppInfo.getAll();
+
+
+
+
+
+
+
