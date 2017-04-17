@@ -9,7 +9,6 @@ var AppInfo = require("ti.appinfo");
 - [x] AppInfo.getFirstInstallDate();
 - [x] AppInfo.getLastInstallTime();
 - [x] AppInfo.getLastInstallDate();
-- [x] AppInfo.getLastInstallDate();
 - [x] AppInfo.getDataDir();
 - [x] AppInfo.getNativeLibraryDir();
 - [x] AppInfo.getSharedLibraryFiles();
