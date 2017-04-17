@@ -14,6 +14,7 @@ import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.titanium.TiApplication;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 
@@ -38,11 +39,19 @@ public class AppinfoModule extends KrollModule {
 			PackageInfo pInfo = ctx.getPackageManager().getPackageInfo(
 					TiApplication.getInstance().getApplicationContext()
 							.getPackageName(), 0);
-			firstInstallTime = pInfo.firstInstallTime;
+			ApplicationInfo appInfo = pInfo.applicationInfo;
+			KrollDict ai = new KrollDict();
+			ai.put("backupAgentName", appInfo.backupAgentName);
+			ai.put("dataDir", appInfo.dataDir);
+			ai.put("name", appInfo.name);
+			ai.put("nativeLibraryDir", appInfo.nativeLibraryDir);
+			ai.put("sharedLibraryFiles", appInfo.sharedLibraryFiles);
+			kd.put("appInfo", ai);
+			kd.put("sharedUserId", pInfo.sharedUserId);
 			kd.put("versionsCode", pInfo.versionCode);
-			kd.put("firstInstallTime", firstInstallTime);
-			kd.put("versionName", pInfo.versionName);
+			kd.put("firstInstallTime", pInfo.firstInstallTime);
 			kd.put("lastUpdateTime", pInfo.lastUpdateTime);
+			kd.put("versionName", pInfo.versionName);
 			kd.put("requestedPermissions", pInfo.requestedPermissions);
 
 			return kd;
