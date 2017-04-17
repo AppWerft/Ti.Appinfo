@@ -1,0 +1,16 @@
+%define lookup-function-name lookupGeneratedInit
+%define class-name VersioncodeBindings
+%{
+
+#include <string.h>
+#include <v8.h>
+#include <KrollBindings.h>
+
+#include "ti.versioncode.AppinfoModule.h"
+
+
+%}
+struct titanium::bindings::BindEntry;
+%%
+ti.versioncode.AppinfoModule, ::ti::appinfo::AppinfoModule::bindProxy, ::ti::appinfo::AppinfoModule::dispose
+%%
