@@ -2,6 +2,7 @@
 
 ```javascript
 var AppInfo = require("ti.appinfo");
+AppInfo.getAll();
 ```
 
 - [x] AppInfo.getVersionsCode();
@@ -26,7 +27,7 @@ _Full path to the directory where native JNI libraries are stored._
 _Paths to all shared libraries this application is linked against. This field is only set if the _
 
 - [x] AppInfo.getName();
-- [x] AppInfo.getAll();
+
 
 
 
