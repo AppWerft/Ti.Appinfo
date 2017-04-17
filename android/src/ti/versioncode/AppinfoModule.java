@@ -14,6 +14,7 @@ import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.titanium.TiApplication;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 
 @Kroll.module(name = "Versioncode", id = "ti.versioncode")
@@ -34,23 +35,22 @@ public class AppinfoModule extends KrollModule {
 		String versionName = null;
 		Context ctx = TiApplication.getInstance().getApplicationContext();
 		try {
-			versionCode = ctx.getPackageManager().getPackageInfo(
+			PackageInfo pInfo = ctx.getPackageManager().getPackageInfo(
 					TiApplication.getInstance().getApplicationContext()
-							.getPackageName(), 0).versionCode;
-			firstInstallTime = ctx.getPackageManager().getPackageInfo(
-					TiApplication.getInstance().getApplicationContext()
-							.getPackageName(), 0).firstInstallTime;
-			versionName = ctx.getPackageManager().getPackageInfo(
-					TiApplication.getInstance().getApplicationContext()
-							.getPackageName(), 0).versionName;
+							.getPackageName(), 0);
+			firstInstallTime = pInfo.firstInstallTime;
+			kd.put("versionsCode", pInfo.versionCode);
+			kd.put("firstInstallTime", firstInstallTime);
+			kd.put("versionName", pInfo.versionName);
+			kd.put("lastUpdateTime", pInfo.lastUpdateTime);
+			kd.put("requestedPermissions", pInfo.requestedPermissions);
+
+			return kd;
 
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
-		kd.put("versionsCode", versionCode);
-		kd.put("firstInstallTime", firstInstallTime);
-		kd.put("versionName", versionName);
+		return null;
 
-		return kd;
 	}
 }
