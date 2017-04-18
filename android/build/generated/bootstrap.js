@@ -16,9 +16,9 @@ function moduleBootstrap(moduleBinding) {
 			name, namespace, moduleBinding.getBinding);
 	}
 
-	var module = moduleBinding.getBinding("ti.versioncode.AppinfoModule")["Versioncode"];
+	var module = moduleBinding.getBinding("ti.appinfo.AppinfoModule")["Appinfo"];
 	var invocationAPIs = module.invocationAPIs = [];
-	module.apiName = "Versioncode";
+	module.apiName = "Appinfo";
 
 	function addInvocationAPI(module, moduleNamespace, namespace, api) {
 		invocationAPIs.push({ namespace: namespace, api: api });

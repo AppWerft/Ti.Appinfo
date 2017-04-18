@@ -1,4 +1,4 @@
-# Main NDK build script for ti.versioncode
+# Main NDK build script for ti.appinfo
 
 APP_BUILD_SCRIPT := jni/Android.mk
 TARGET_PLATFORM := android-10

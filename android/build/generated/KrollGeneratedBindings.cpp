@@ -1,22 +1,22 @@
 /* C++ code produced by gperf version 3.0.3 */
-/* Command-line: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/gperf -L C++ -E -t /private/var/folders/dp/_57t8_6j247dh0h7mknf97600000gn/T/fuerst/versioncode-generated/KrollGeneratedBindings.gperf  */
+/* Command-line: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/gperf -L C++ -E -t /private/var/folders/dp/_57t8_6j247dh0h7mknf97600000gn/T/fuerst/appinfo-generated/KrollGeneratedBindings.gperf  */
 /* Computed positions: -k'' */
 
-#line 3 "/private/var/folders/dp/_57t8_6j247dh0h7mknf97600000gn/T/fuerst/versioncode-generated/KrollGeneratedBindings.gperf"
+#line 3 "/private/var/folders/dp/_57t8_6j247dh0h7mknf97600000gn/T/fuerst/appinfo-generated/KrollGeneratedBindings.gperf"
 
 
 #include <string.h>
 #include <v8.h>
 #include <KrollBindings.h>
 
-#include "ti.versioncode.VersioncodeModule.h"
+#include "ti.appinfo.AppinfoModule.h"
 
 
-#line 13 "/private/var/folders/dp/_57t8_6j247dh0h7mknf97600000gn/T/fuerst/versioncode-generated/KrollGeneratedBindings.gperf"
+#line 13 "/private/var/folders/dp/_57t8_6j247dh0h7mknf97600000gn/T/fuerst/appinfo-generated/KrollGeneratedBindings.gperf"
 struct titanium::bindings::BindEntry;
 /* maximum key range = 1, duplicates = 0 */
 
-class VersioncodeBindings
+class AppinfoBindings
 {
 private:
   static inline unsigned int hash (const char *str, unsigned int len);
@@ -26,31 +26,30 @@ public:
 
 inline /*ARGSUSED*/
 unsigned int
-VersioncodeBindings::hash (register const char *str, register unsigned int len)
+AppinfoBindings::hash (register const char *str, register unsigned int len)
 {
   return len;
 }
 
 struct titanium::bindings::BindEntry *
-VersioncodeBindings::lookupGeneratedInit (register const char *str, register unsigned int len)
+AppinfoBindings::lookupGeneratedInit (register const char *str, register unsigned int len)
 {
   enum
     {
       TOTAL_KEYWORDS = 1,
-      MIN_WORD_LENGTH = 32,
-      MAX_WORD_LENGTH = 32,
-      MIN_HASH_VALUE = 32,
-      MAX_HASH_VALUE = 32
+      MIN_WORD_LENGTH = 24,
+      MAX_WORD_LENGTH = 24,
+      MIN_HASH_VALUE = 24,
+      MAX_HASH_VALUE = 24
     };
 
   static struct titanium::bindings::BindEntry wordlist[] =
     {
       {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
-      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
-      {""}, {""}, {""}, {""}, {""},
-#line 15 "/private/var/folders/dp/_57t8_6j247dh0h7mknf97600000gn/T/fuerst/versioncode-generated/KrollGeneratedBindings.gperf"
-      {"ti.versioncode.VersioncodeModule", ::ti::versioncode::VersioncodeModule::bindProxy, ::ti::versioncode::VersioncodeModule::dispose}
+      {""}, {""}, {""}, {""}, {""}, {""},
+#line 15 "/private/var/folders/dp/_57t8_6j247dh0h7mknf97600000gn/T/fuerst/appinfo-generated/KrollGeneratedBindings.gperf"
+      {"ti.appinfo.AppinfoModule", ::ti::appinfo::AppinfoModule::bindProxy, ::ti::appinfo::AppinfoModule::dispose}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -67,5 +66,5 @@ VersioncodeBindings::lookupGeneratedInit (register const char *str, register uns
     }
   return 0;
 }
-#line 16 "/private/var/folders/dp/_57t8_6j247dh0h7mknf97600000gn/T/fuerst/versioncode-generated/KrollGeneratedBindings.gperf"
+#line 16 "/private/var/folders/dp/_57t8_6j247dh0h7mknf97600000gn/T/fuerst/appinfo-generated/KrollGeneratedBindings.gperf"
 

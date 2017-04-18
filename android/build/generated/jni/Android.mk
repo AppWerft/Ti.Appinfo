@@ -1,11 +1,11 @@
-# Android.mk for ti.versioncode
+# Android.mk for ti.appinfo
 LOCAL_PATH := $(call my-dir)
 THIS_DIR := $(LOCAL_PATH)
 
 include $(CLEAR_VARS)
 
 THIS_DIR = $(LOCAL_PATH)
-LOCAL_MODULE := ti.versioncode
+LOCAL_MODULE := ti.appinfo
 LOCAL_CFLAGS := -g "-I$(TI_MOBILE_SDK)/android/native/include"
 
 # https://jira.appcelerator.org/browse/TIMOB-15263
