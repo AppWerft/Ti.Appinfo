@@ -25,7 +25,27 @@ function moduleBootstrap(moduleBinding) {
 	}
 
 	
-			return module;
+			if (!("__propertiesDefined__" in module)) {		
+		Object.defineProperties(module, {
+			"ApplicationInfo": {
+				get: function() {
+					var ApplicationInfo = lazyGet(this, "ti.appinfo.ApplicationInfoModule", "ApplicationInfo", "ApplicationInfo");
+					return ApplicationInfo;
+				},
+				configurable: true
+			},
+			"Filesystem": {
+				get: function() {
+					var Filesystem = lazyGet(this, "ti.appinfo.FilesystemModule", "Filesystem", "Filesystem");
+					return Filesystem;
+				},
+				configurable: true
+			},
+		
+		});
+		}
+		module.__propertiesDefined__ = true;
+		return module;
 
 }
 exports.bootstrap = moduleBootstrap;

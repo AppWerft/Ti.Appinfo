@@ -7,10 +7,14 @@
 #include <KrollBindings.h>
 
 #include "ti.appinfo.AppinfoModule.h"
+#include "ti.appinfo.FilesystemModule.h"
+#include "ti.appinfo.ApplicationInfoModule.h"
 
 
 %}
 struct titanium::bindings::BindEntry;
 %%
 ti.appinfo.AppinfoModule, ::ti::appinfo::AppinfoModule::bindProxy, ::ti::appinfo::AppinfoModule::dispose
+ti.appinfo.FilesystemModule, ::ti::appinfo::appinfo::FilesystemModule::bindProxy, ::ti::appinfo::appinfo::FilesystemModule::dispose
+ti.appinfo.ApplicationInfoModule, ::ti::appinfo::appinfo::ApplicationInfoModule::bindProxy, ::ti::appinfo::appinfo::ApplicationInfoModule::dispose
 %%

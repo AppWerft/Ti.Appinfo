@@ -36,7 +36,6 @@ public class AppinfoModule extends KrollModule {
 
 	@Kroll.onAppCreate
 	public static void onAppCreate(TiApplication app) {
-		init();
 	}
 
 	@Kroll.method
@@ -104,7 +103,7 @@ public class AppinfoModule extends KrollModule {
 		return sdf.format(calendar.getTime());
 	}
 
-	private static KrollDict init() {
+	public static KrollDict init() {
 		KrollDict appinfo = new KrollDict();
 		Context ctx = TiApplication.getInstance().getApplicationContext();
 		try {
@@ -124,14 +123,20 @@ public class AppinfoModule extends KrollModule {
 			appinfo.put("firstInstallTime", pInfo.firstInstallTime);
 			appinfo.put("firstInstallDate", time2date(pInfo.firstInstallTime));
 			appinfo.put("lastUpdateTime", pInfo.lastUpdateTime);
+			appinfo.put("lastUpdateDate", time2date(pInfo.lastUpdateTime));
 			appinfo.put("versionName", pInfo.versionName);
 			appinfo.put("requestedPermissions", pInfo.requestedPermissions);
-			Log.d(LCAT + "////////////////////////////////////////////\n",
-					appinfo.toString());
+			if (pInfo.permissions != null)
+				appinfo.put("permissions", pInfo.permissions);
 			return appinfo;
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
+
+	public static KrollDict getAppInfo() {
+		return init().getKrollDict("appInfo");
+	}
+
 }
