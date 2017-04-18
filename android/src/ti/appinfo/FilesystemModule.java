@@ -49,36 +49,31 @@ public class FilesystemModule extends AppinfoModule {
 	@Kroll.method
 	public String getDataDir() {
 		KrollDict appinfo = AppinfoModule.getAppInfo();
-		Log.d(LCAT, appinfo.toString());
 		return appinfo.getString("dataDir");
 	}
 
 	@Kroll.method
+	public KrollDict getAll() {
+		KrollDict appinfo = AppinfoModule.getAppInfo();
+		return appinfo;
+	}
+
+	@Kroll.method
 	public String getNativeLibraryDir() {
-		KrollDict appinfo = AppinfoModule.init();
-		if (appinfo == null)
-			return null;
+		KrollDict appinfo = AppinfoModule.getAppInfo();
 		return appinfo.getKrollDict("appinfo").getString("nativeLibraryDir");
 	}
 
 	@Kroll.method
 	public String getSharedLibraryFiles() {
-		KrollDict appinfo = AppinfoModule.init();
-		if (appinfo == null)
-			return null;
+		KrollDict appinfo = AppinfoModule.getAppInfo();
 		return appinfo.getKrollDict("appinfo").getString("sharedLibraryFiles");
 	}
 
 	@Kroll.method
 	public String getName() {
-		KrollDict appinfo = AppinfoModule.init();
-		if (appinfo == null)
-			return null;
-		KrollDict kd = appinfo.getKrollDict("appinfo");
-		if (kd != null)
-			return kd.getString("name");
-		else
-			return null;
+		KrollDict appinfo = AppinfoModule.getAppInfo();
+		return appinfo.getString("name");
 	}
 
 	@Kroll.method

@@ -13,6 +13,9 @@ _Class implementing the Applications backup functionality._
 - [x] AppInfo.getFirstInstallDate();
 - [x] AppInfo.getLastInstallTime();
 - [x] AppInfo.getLastInstallDate();
+
+- [x] AppInfo.Filesystem.getAll();
+
 - [x] AppInfo.Filesystem.getDataDir();
 
 _Full path to the default directory assigned to the package for its persistent data._
